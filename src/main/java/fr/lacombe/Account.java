@@ -19,6 +19,10 @@ final class Account {
     }
 
     void deposit(int amount, String date) {
-        transactionsHistory.add(new Transaction(Operation.DEPOSIT, amount, date));
+        transactionsHistory.add(Transaction.aTransaction()
+                .withOperation(Operation.DEPOSIT)
+                .withAmount(amount)
+                .withDate(date)
+                .build());
     }
 }
