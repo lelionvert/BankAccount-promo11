@@ -5,9 +5,11 @@ import java.util.List;
 
 public class Account {
     private List<Transaction> transactions;
+    private int balance;
 
     public Account() {
         transactions = new ArrayList<>();
+        balance = 0;
     }
 
     public boolean checkAllIsFine() {
@@ -19,10 +21,9 @@ public class Account {
     }
 
     public int getBalance() {
-        int sum = 0;
         for (Transaction transaction : transactions) {
-            sum += transaction.getAmount();
+            balance += transaction.getAmount();
         }
-        return sum;
+        return balance;
     }
 }
