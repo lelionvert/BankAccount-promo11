@@ -67,4 +67,20 @@ class AccountTest {
 
         assertThat(account.printStatement()).isEqualTo(expectedPrint);
     }
+
+    @Test
+    void print_statement_multiple_operations() {
+        // When
+        account.deposit(1000, transactionDate);
+        account.withdraw(100, transactionDate.plusDays(1));
+        account.deposit(200, transactionDate.plusDays(4));
+
+        // Then
+        String expectedPrint = "DATE \t | AMOUNT \t | BALANCE \n" +
+                "2019-04-01\t | 1000 \t | 1000\n" +
+                "2019-04-02\t | -100 \t | 900\n" +
+                "2019-04-05\t | 200 \t | 1100\n";
+
+        assertThat(account.printStatement()).isEqualTo(expectedPrint);
+    }
 }

@@ -22,7 +22,8 @@ final class Transaction {
 
     @Override
     public String toString() {
-        return date + "\t | " + amount + " \t | " + balance + "\n";
+        return date + "\t | " + (operation == Operation.WITHDRAWAL ? "-" : "") +
+                amount + " \t | " + balance + "\n";
     }
 
     @Override

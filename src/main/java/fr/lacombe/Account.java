@@ -36,6 +36,7 @@ final class Account {
                 .withOperation(Operation.WITHDRAWAL)
                 .withAmount(amount)
                 .withDate(date)
+                .withBalance(currentBalance() - amount)
                 .build());
     }
 
