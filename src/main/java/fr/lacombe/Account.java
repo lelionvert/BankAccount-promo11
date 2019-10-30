@@ -29,4 +29,12 @@ final class Account {
     boolean contains(Transaction transaction) {
         return transactionsHistory.contains(transaction);
     }
+
+    void withdraw(int amount, String date) {
+        transactionsHistory.add(Transaction.aTransaction()
+                .withOperation(Operation.WITHDRAWAL)
+                .withAmount(amount)
+                .withDate(date)
+                .build());
+    }
 }

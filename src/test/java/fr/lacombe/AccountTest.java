@@ -20,7 +20,7 @@ class AccountTest {
     }
 
     @Test
-    void first_deposit() {
+    void make_deposit_transaction_in_account() {
         // When
         account.deposit(1000, "2019-04-01");
 
@@ -29,6 +29,20 @@ class AccountTest {
                 .withOperation(Operation.DEPOSIT)
                 .withAmount(1000)
                 .withDate("2019-04-01")
+                .build();
+        assertThat(account.contains(transaction)).isTrue();
+    }
+
+    @Test
+    void make_withdrawal_transaction_in_account() {
+        // When
+        account.withdraw(100, "2019-04-02");
+
+        // Then
+        Transaction transaction = Transaction.aTransaction()
+                .withOperation(Operation.WITHDRAWAL)
+                .withAmount(100)
+                .withDate("2019-04-02")
                 .build();
         assertThat(account.contains(transaction)).isTrue();
     }

@@ -1,5 +1,5 @@
 package fr.lacombe;
 
 enum Operation {
-    DEPOSIT
+    WITHDRAWAL, DEPOSIT
 }
