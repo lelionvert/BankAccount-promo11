@@ -1,16 +1,15 @@
 package fr.lacombedulionvert;
 
-import static org.junit.Assert.assertTrue;
-
-import org.assertj.core.api.Assertions;
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
-import java.nio.channels.AcceptPendingException;
+import static org.assertj.core.api.Assertions.assertThat;
 
-public class AccountTest
-{
-
+@RunWith(JUnitParamsRunner.class)
+public class AccountTest {
     @Test
     public void initialize_new_account() {
         //Given
@@ -18,7 +17,8 @@ public class AccountTest
         //When
         boolean isOk = compte.checkAllIsFine();
         //Then
-        Assertions.assertThat(isOk).isTrue();
+
+        assertThat(isOk).isTrue();
     }
 
     @Test
@@ -29,33 +29,25 @@ public class AccountTest
         //When
         boolean isNotOk = compte.checkAllIsFine();
         //Then
-        Assertions.assertThat(isNotOk).isFalse();
+        assertThat(isNotOk).isFalse();
+    }
+
+    private Object[] parametersForCreate_transaction() {
+        return new Object[][]{
+                {"2019/04/02", 1000, "Deposit", 1000},
+                {"2019/04/02", 1200, "Deposit", 1200},
+                {"2019/04/02", 900, "Deposit", 900}
+        };
     }
 
     @Test
-    public void create_transaction_list_1000() {
-        Transaction transaction = new Transaction ("2019/04/02", 1000, "Deposit");
+    @Parameters
+    public void create_transaction(final String date, final int amount, final String type, final int expected) {
+        Transaction transaction = new Transaction (date, amount, type);
         Account compte = new Account();
         compte.add(transaction);
 
-        Assertions.assertThat(compte.getBalance()).isEqualTo(1000);
+        assertThat(compte.getBalance()).isEqualTo(expected);
     }
 
-    @Test
-    public void create_transaction_1200() {
-        Transaction transaction = new Transaction ("2019/04/02", 1200, "Deposit");
-        Account compte = new Account();
-        compte.add(transaction);
-
-        Assertions.assertThat(compte.getBalance()).isEqualTo(1200);
-    }
-
-    @Test
-    public void create_transaction_900() {
-        Transaction transaction = new Transaction ("2019/04/02", 900, "Deposit");
-        Account compte = new Account();
-        compte.add(transaction);
-
-        Assertions.assertThat(compte.getBalance()).isEqualTo(900);
-    }
 }
