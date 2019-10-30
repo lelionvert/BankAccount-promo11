@@ -13,20 +13,12 @@ public class Transaction {
         this.balance = 0;
     }
 
-    public int getAmount() {
-        return amount;
-    }
-
     static Builder initialize() {
         return new Builder();
     }
 
     public int sum(int currentBalance) {
         return amount + currentBalance;
-    }
-
-    public int getBalance() {
-        return balance;
     }
 
     public static class Builder {

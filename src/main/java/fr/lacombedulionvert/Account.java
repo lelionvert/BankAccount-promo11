@@ -13,7 +13,7 @@ public class Account {
     }
 
     public boolean checkAllIsFine() {
-        return true;
+        return transactions.size() == 0 && currentBalance == 0;
     }
 
     public void addTransaction(Transaction transaction) {

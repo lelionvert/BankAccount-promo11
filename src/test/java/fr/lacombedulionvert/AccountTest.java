@@ -24,10 +24,13 @@ public class AccountTest {
     }
 
     @Test
-    @Ignore("WIP")
     public void initialize_account_not_checked() {
         //Given
         Account compte = new Account();
+        ArrayList<Transaction> transactions = new ArrayList<>();
+        Transaction transaction = Transaction.initialize().withDate("2019/04/02").withAmount(900).withType("Deposit").build();
+        transactions.add(transaction);
+        compte.addTransaction(transaction);
         //When
         boolean isNotOk = compte.checkAllIsFine();
         //Then
