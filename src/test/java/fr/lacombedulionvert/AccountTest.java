@@ -6,6 +6,8 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.util.ArrayList;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(JUnitParamsRunner.class)
@@ -45,6 +47,30 @@ public class AccountTest {
     public void create_transaction(final Transaction transaction, final int expected) {
         Account compte = new Account();
 
+        compte.add(transaction);
+
+        assertThat(compte.getBalance()).isEqualTo(expected);
+    }
+
+    private Object[] parametersForCreate_transaction_list() {
+        return new Object[][]{
+                {Transaction.initialize().withDate("2019/04/02").withAmount(900).withType("Deposit").build(), 2700},
+                {Transaction.initialize().withDate("2019/04/02").withAmount(1000).withType("Deposit").build(), 3000},
+                {Transaction.initialize().withDate("2019/04/02").withAmount(1200).withType("Deposit").build(), 3600}
+        };
+    }
+
+    @Test
+    @Parameters
+    public void create_transaction_list(final Transaction transaction, final int expected) {
+        Account compte = new Account();
+        ArrayList<Transaction> transactions = new ArrayList<>();
+
+        transactions.add(transaction);
+        compte.add(transaction);
+        transactions.add(transaction);
+        compte.add(transaction);
+        transactions.add(transaction);
         compte.add(transaction);
 
         assertThat(compte.getBalance()).isEqualTo(expected);

@@ -19,6 +19,10 @@ public class Account {
     }
 
     public int getBalance() {
-        return transactions.get(0).getAmount();
+        int sum = 0;
+        for (Transaction transaction : transactions) {
+            sum += transaction.getAmount();
+        }
+        return sum;
     }
 }
