@@ -49,4 +49,13 @@ public class AccountTest
 
         Assertions.assertThat(compte.getBalance()).isEqualTo(1200);
     }
+
+    @Test
+    public void create_transaction_900() {
+        Transaction transaction = new Transaction ("2019/04/02", 900, "Deposit");
+        Account compte = new Account();
+        compte.add(transaction);
+
+        Assertions.assertThat(compte.getBalance()).isEqualTo(900);
+    }
 }
