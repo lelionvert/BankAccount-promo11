@@ -10,4 +10,10 @@ public class Transaction {
         this.amount = amount;
         this.type = type;
     }
+
+    public int getAmount() {
+        return amount;
+    }
+
+
 }

@@ -33,11 +33,20 @@ public class AccountTest
     }
 
     @Test
-    public void create_transaction_list_to_check_account() {
+    public void create_transaction_list_1000() {
         Transaction transaction = new Transaction ("2019/04/02", 1000, "Deposit");
         Account compte = new Account();
         compte.add(transaction);
 
         Assertions.assertThat(compte.getBalance()).isEqualTo(1000);
+    }
+
+    @Test
+    public void create_transaction_1200() {
+        Transaction transaction = new Transaction ("2019/04/02", 1200, "Deposit");
+        Account compte = new Account();
+        compte.add(transaction);
+
+        Assertions.assertThat(compte.getBalance()).isEqualTo(1200);
     }
 }
