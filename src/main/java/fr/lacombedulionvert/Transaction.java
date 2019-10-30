@@ -4,11 +4,13 @@ public class Transaction {
     private final String date;
     private final int amount;
     private final String type;
+    private int balance;
 
     private Transaction(String date, int amount, String type) {
         this.date = date;
         this.amount = amount;
         this.type = type;
+        this.balance = 0;
     }
 
     public int getAmount() {
@@ -17,6 +19,14 @@ public class Transaction {
 
     static Builder initialize() {
         return new Builder();
+    }
+
+    public int add(int currentBalance) {
+        return amount + currentBalance;
+    }
+
+    public int getBalance() {
+        return balance;
     }
 
     public static class Builder {
