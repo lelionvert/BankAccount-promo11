@@ -16,12 +16,13 @@ public class Account {
         return true;
     }
 
-    public void add(Transaction transaction) {
-        currentBalance = transaction.add(currentBalance);
+    public void addTransaction(Transaction transaction) {
+        currentBalance = transaction.sum(currentBalance);
         this.transactions.add(transaction);
     }
 
     public int getBalance() {
-        return transactions.get(transactions.size()-1).getBalance();
+        return currentBalance;
     }
+
 }

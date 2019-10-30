@@ -21,7 +21,7 @@ public class Transaction {
         return new Builder();
     }
 
-    public int add(int currentBalance) {
+    public int sum(int currentBalance) {
         return amount + currentBalance;
     }
 

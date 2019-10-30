@@ -47,7 +47,7 @@ public class AccountTest {
     public void create_transaction(final Transaction transaction, final int expected) {
         Account compte = new Account();
 
-        compte.add(transaction);
+        compte.addTransaction(transaction);
 
         assertThat(compte.getBalance()).isEqualTo(expected);
     }
@@ -67,11 +67,11 @@ public class AccountTest {
         ArrayList<Transaction> transactions = new ArrayList<>();
 
         transactions.add(transaction);
-        compte.add(transaction);
+        compte.addTransaction(transaction);
         transactions.add(transaction);
-        compte.add(transaction);
+        compte.addTransaction(transaction);
         transactions.add(transaction);
-        compte.add(transaction);
+        compte.addTransaction(transaction);
 
         assertThat(compte.getBalance()).isEqualTo(expected);
     }
