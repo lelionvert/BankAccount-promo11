@@ -3,11 +3,15 @@ package fr.lacombe;
 import java.util.ArrayList;
 import java.util.List;
 
-class Account {
-    private List<Transaction> transactionsHistory;
+final class Account {
+    private final List<Transaction> transactionsHistory;
 
-    Account() {
+    private Account() {
         this.transactionsHistory = new ArrayList<>();
+    }
+
+    static Account createAccount(){
+        return new Account();
     }
 
     List getListTransaction() {

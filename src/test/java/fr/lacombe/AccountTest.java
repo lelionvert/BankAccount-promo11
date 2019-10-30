@@ -11,12 +11,11 @@ class AccountTest {
 
     @BeforeEach
     void setUp() {
-        account = new Account();
+        account = Account.createAccount();
     }
 
     @Test
     void account_creation() {
-        // Then
         assertThat(account.getListTransaction()).isEmpty();
     }
 
