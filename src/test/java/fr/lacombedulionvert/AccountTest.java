@@ -34,22 +34,17 @@ public class AccountTest {
 
     private Object[] parametersForCreate_transaction() {
         return new Object[][]{
-                {"2019/04/02", 1000, "Deposit", 1000},
-                {"2019/04/02", 1200, "Deposit", 1200},
-                {"2019/04/02", 900, "Deposit", 900}
+                {Transaction.initialize().withDate("2019/04/02").withAmount(900).withType("Deposit").build(), 900},
+                {Transaction.initialize().withDate("2019/04/02").withAmount(1000).withType("Deposit").build(), 1000},
+                {Transaction.initialize().withDate("2019/04/02").withAmount(1200).withType("Deposit").build(), 1200}
         };
     }
 
     @Test
     @Parameters
-    public void create_transaction(final String date, final int amount, final String type, final int expected) {
-        Transaction transaction = Transaction.initialize()
-                .withDate(date)
-                .withAmount(amount)
-                .withType(type)
-                .build();
-
+    public void create_transaction(final Transaction transaction, final int expected) {
         Account compte = new Account();
+
         compte.add(transaction);
 
         assertThat(compte.getBalance()).isEqualTo(expected);
