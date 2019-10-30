@@ -3,6 +3,7 @@ package fr.lacombe;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static fr.lacombe.Transaction.aTransaction;
 
@@ -13,7 +14,7 @@ final class Account {
         this.transactionsHistory = new ArrayList<>();
     }
 
-    static Account createAccount(){
+    static Account createAccount() {
         return new Account();
     }
 
@@ -22,7 +23,12 @@ final class Account {
                 .withOperation(Operation.DEPOSIT)
                 .withAmount(amount)
                 .withDate(date)
+                .withBalance(currentBalance() + amount)
                 .build());
+    }
+
+    private int currentBalance() {
+        return transactionsHistory.isEmpty() ? 0 : transactionsHistory.get(transactionsHistory.size() - 1).getBalance();
     }
 
     void withdraw(int amount, LocalDate date) {
@@ -42,14 +48,6 @@ final class Account {
     }
 
     String printStatement() {
-        StringBuilder result = new StringBuilder("DATE \t | AMOUNT \t | BALANCE \n");
-        int balance = 0;
-        for (Transaction transaction : transactionsHistory){
-            result.append(transaction.toString());
-            balance += transaction.getAmount();
-            result.append(balance);
-            result.append("\n");
-        }
-        return result.toString();
+        return transactionsHistory.stream().map(Transaction::toString).collect(Collectors.joining("", "DATE \t | AMOUNT \t | BALANCE \n", ""));
     }
 }

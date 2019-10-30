@@ -9,10 +9,11 @@ final class Transaction {
     private final LocalDate date;
     private int balance;
 
-    private Transaction(Operation operation, int amount, LocalDate date) {
+    private Transaction(Operation operation, int amount, LocalDate date, int balance) {
         this.operation = operation;
         this.amount = amount;
         this.date = date;
+        this.balance = balance;
     }
 
     static Builder aTransaction() {
@@ -21,7 +22,7 @@ final class Transaction {
 
     @Override
     public String toString() {
-        return date + "\t | " + amount + " \t | ";
+        return date + "\t | " + amount + " \t | " + balance + "\n";
     }
 
     @Override
@@ -39,14 +40,15 @@ final class Transaction {
         return Objects.hash(operation, amount, date);
     }
 
-    int getAmount() {
-        return amount;
+    int getBalance() {
+        return balance;
     }
 
     public static final class Builder {
         private Operation operation;
         private int amount;
         private LocalDate date;
+        private int balance;
 
         private Builder() {
         }
@@ -66,8 +68,13 @@ final class Transaction {
             return this;
         }
 
+        Builder withBalance(int balance) {
+            this.balance = balance;
+            return this;
+        }
+
         Transaction build() {
-            return new Transaction(operation, amount, date);
+            return new Transaction(operation, amount, date, balance);
         }
     }
 }
