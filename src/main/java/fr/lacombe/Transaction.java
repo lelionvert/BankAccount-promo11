@@ -1,13 +1,14 @@
 package fr.lacombe;
 
+import java.time.LocalDate;
 import java.util.Objects;
 
 final class Transaction {
     private final Operation operation;
     private final int amount;
-    private final String date;
+    private final LocalDate date;
 
-    private Transaction(Operation operation, int amount, String date) {
+    private Transaction(Operation operation, int amount, LocalDate date) {
         this.operation = operation;
         this.amount = amount;
         this.date = date;
@@ -35,7 +36,7 @@ final class Transaction {
     public static final class Builder {
         private Operation operation;
         private int amount;
-        private String date;
+        private LocalDate date;
 
         private Builder() {
         }
@@ -50,7 +51,7 @@ final class Transaction {
             return this;
         }
 
-        Builder withDate(String date) {
+        Builder withDate(LocalDate date) {
             this.date = date;
             return this;
         }

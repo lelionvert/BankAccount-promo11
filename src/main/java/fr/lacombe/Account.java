@@ -1,5 +1,6 @@
 package fr.lacombe;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +17,7 @@ final class Account {
         return new Account();
     }
 
-    void deposit(int amount, String date) {
+    void deposit(int amount, LocalDate date) {
         transactionsHistory.add(aTransaction()
                 .withOperation(Operation.DEPOSIT)
                 .withAmount(amount)
@@ -24,7 +25,7 @@ final class Account {
                 .build());
     }
 
-    void withdraw(int amount, String date) {
+    void withdraw(int amount, LocalDate date) {
         transactionsHistory.add(aTransaction()
                 .withOperation(Operation.WITHDRAWAL)
                 .withAmount(amount)
