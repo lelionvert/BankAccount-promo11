@@ -3,6 +3,8 @@ package fr.lacombe;
 import java.util.ArrayList;
 import java.util.List;
 
+import static fr.lacombe.Transaction.*;
+
 final class Account {
     private final List<Transaction> transactionsHistory;
 
@@ -15,8 +17,16 @@ final class Account {
     }
 
     void deposit(int amount, String date) {
-        transactionsHistory.add(Transaction.aTransaction()
+        transactionsHistory.add(aTransaction()
                 .withOperation(Operation.DEPOSIT)
+                .withAmount(amount)
+                .withDate(date)
+                .build());
+    }
+
+    void withdraw(int amount, String date) {
+        transactionsHistory.add(aTransaction()
+                .withOperation(Operation.WITHDRAWAL)
                 .withAmount(amount)
                 .withDate(date)
                 .build());
@@ -28,13 +38,5 @@ final class Account {
 
     boolean contains(Transaction transaction) {
         return transactionsHistory.contains(transaction);
-    }
-
-    void withdraw(int amount, String date) {
-        transactionsHistory.add(Transaction.aTransaction()
-                .withOperation(Operation.WITHDRAWAL)
-                .withAmount(amount)
-                .withDate(date)
-                .build());
     }
 }

@@ -8,6 +8,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class AccountTest {
 
     private Account account;
+    private Transaction transaction;
 
     @BeforeEach
     void setUp() {
@@ -25,7 +26,7 @@ class AccountTest {
         account.deposit(1000, "2019-04-01");
 
         // Then
-        Transaction transaction = Transaction.aTransaction()
+        transaction = Transaction.aTransaction()
                 .withOperation(Operation.DEPOSIT)
                 .withAmount(1000)
                 .withDate("2019-04-01")
@@ -39,7 +40,7 @@ class AccountTest {
         account.withdraw(100, "2019-04-02");
 
         // Then
-        Transaction transaction = Transaction.aTransaction()
+        transaction = Transaction.aTransaction()
                 .withOperation(Operation.WITHDRAWAL)
                 .withAmount(100)
                 .withDate("2019-04-02")
