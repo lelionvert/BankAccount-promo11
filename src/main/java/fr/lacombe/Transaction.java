@@ -7,6 +7,7 @@ final class Transaction {
     private final Operation operation;
     private final int amount;
     private final LocalDate date;
+    private int balance;
 
     private Transaction(Operation operation, int amount, LocalDate date) {
         this.operation = operation;
@@ -16,6 +17,11 @@ final class Transaction {
 
     static Builder aTransaction() {
         return new Builder();
+    }
+
+    @Override
+    public String toString() {
+        return date + "\t | " + amount + " \t | ";
     }
 
     @Override
@@ -31,6 +37,10 @@ final class Transaction {
     @Override
     public int hashCode() {
         return Objects.hash(operation, amount, date);
+    }
+
+    int getAmount() {
+        return amount;
     }
 
     public static final class Builder {

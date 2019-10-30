@@ -51,4 +51,20 @@ class AccountTest {
                 .build();
         assertThat(account.contains(transaction)).isTrue();
     }
+
+    @Test
+    void print_statement_multiple_deposits() {
+        // When
+        account.deposit(1000, transactionDate);
+        account.deposit(100, transactionDate.plusDays(1));
+        account.deposit(200, transactionDate.plusDays(4));
+
+        // Then
+        String expectedPrint = "DATE \t | AMOUNT \t | BALANCE \n" +
+                "2019-04-01\t | 1000 \t | 1000\n" +
+                "2019-04-02\t | 100 \t | 1100\n" +
+                "2019-04-05\t | 200 \t | 1300\n";
+
+        assertThat(account.printStatement()).isEqualTo(expectedPrint);
+    }
 }

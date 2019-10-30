@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import static fr.lacombe.Transaction.*;
+import static fr.lacombe.Transaction.aTransaction;
 
 final class Account {
     private final List<Transaction> transactionsHistory;
@@ -39,5 +39,17 @@ final class Account {
 
     boolean contains(Transaction transaction) {
         return transactionsHistory.contains(transaction);
+    }
+
+    String printStatement() {
+        StringBuilder result = new StringBuilder("DATE \t | AMOUNT \t | BALANCE \n");
+        int balance = 0;
+        for (Transaction transaction : transactionsHistory){
+            result.append(transaction.toString());
+            balance += transaction.getAmount();
+            result.append(balance);
+            result.append("\n");
+        }
+        return result.toString();
     }
 }
