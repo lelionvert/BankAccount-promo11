@@ -14,15 +14,19 @@ final class Account {
         return new Account();
     }
 
-    List getListTransaction() {
-        return transactionsHistory;
-    }
-
     void deposit(int amount, String date) {
         transactionsHistory.add(Transaction.aTransaction()
                 .withOperation(Operation.DEPOSIT)
                 .withAmount(amount)
                 .withDate(date)
                 .build());
+    }
+
+    boolean isNew() {
+        return transactionsHistory.isEmpty();
+    }
+
+    boolean contains(Transaction transaction) {
+        return transactionsHistory.contains(transaction);
     }
 }

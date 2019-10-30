@@ -16,7 +16,7 @@ class AccountTest {
 
     @Test
     void account_creation() {
-        assertThat(account.getListTransaction()).isEmpty();
+        assertThat(account.isNew()).isTrue();
     }
 
     @Test
@@ -30,6 +30,6 @@ class AccountTest {
                 .withAmount(1000)
                 .withDate("2019-04-01")
                 .build();
-        assertThat(account.getListTransaction()).containsExactly(transaction);
+        assertThat(account.contains(transaction)).isTrue();
     }
 }
