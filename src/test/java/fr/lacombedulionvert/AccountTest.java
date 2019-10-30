@@ -43,7 +43,12 @@ public class AccountTest {
     @Test
     @Parameters
     public void create_transaction(final String date, final int amount, final String type, final int expected) {
-        Transaction transaction = new Transaction (date, amount, type);
+        Transaction transaction = Transaction.initialize()
+                .withDate(date)
+                .withAmount(amount)
+                .withType(type)
+                .build();
+
         Account compte = new Account();
         compte.add(transaction);
 
