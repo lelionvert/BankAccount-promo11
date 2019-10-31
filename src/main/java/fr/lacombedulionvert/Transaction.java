@@ -10,7 +10,7 @@ public class Transaction {
         this.date = date;
         this.amount = amount;
         this.type = type;
-        this.balance = 0;
+        this.balance = amount;
     }
 
     static Builder initialize() {
@@ -18,7 +18,7 @@ public class Transaction {
     }
 
     public int sum(int currentBalance) {
-        return amount + currentBalance;
+        return balance + currentBalance;
     }
 
     public static class Builder {

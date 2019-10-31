@@ -16,7 +16,12 @@ public class Account {
         return transactions.size() == 0 && currentBalance == 0;
     }
 
-    public void addTransaction(Transaction transaction) {
+    public void deposit(int amount) {
+        Transaction transaction = Transaction.initialize().withDate("2019/04/02").withAmount(amount).withType("Deposit").build();
+        deposit(transaction);
+    }
+
+    public void deposit(Transaction transaction) {
         currentBalance = transaction.sum(currentBalance);
         this.transactions.add(transaction);
     }

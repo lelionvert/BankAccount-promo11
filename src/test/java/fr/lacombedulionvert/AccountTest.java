@@ -30,7 +30,7 @@ public class AccountTest {
         ArrayList<Transaction> transactions = new ArrayList<>();
         Transaction transaction = Transaction.initialize().withDate("2019/04/02").withAmount(900).withType("Deposit").build();
         transactions.add(transaction);
-        compte.addTransaction(transaction);
+        compte.deposit(transaction);
         //When
         boolean isNotOk = compte.checkAllIsFine();
         //Then
@@ -50,31 +50,28 @@ public class AccountTest {
     public void create_transaction(final Transaction transaction, final int expected) {
         Account compte = new Account();
 
-        compte.addTransaction(transaction);
+        compte.deposit(transaction);
 
         assertThat(compte.getBalance()).isEqualTo(expected);
     }
 
     private Object[] parametersForCreate_transaction_list() {
         return new Object[][]{
-                {Transaction.initialize().withDate("2019/04/02").withAmount(900).withType("Deposit").build(), 2700},
-                {Transaction.initialize().withDate("2019/04/02").withAmount(1000).withType("Deposit").build(), 3000},
-                {Transaction.initialize().withDate("2019/04/02").withAmount(1200).withType("Deposit").build(), 3600}
+                {900, 2700},
+                {1000, 3000},
+                {1200, 3600}
         };
     }
 
     @Test
     @Parameters
-    public void create_transaction_list(final Transaction transaction, final int expected) {
+    public void create_transaction_list(final int amount, final int expected) {
         Account compte = new Account();
         ArrayList<Transaction> transactions = new ArrayList<>();
 
-        transactions.add(transaction);
-        compte.addTransaction(transaction);
-        transactions.add(transaction);
-        compte.addTransaction(transaction);
-        transactions.add(transaction);
-        compte.addTransaction(transaction);
+        compte.deposit(amount);
+        compte.deposit(amount);
+        compte.deposit(amount);
 
         assertThat(compte.getBalance()).isEqualTo(expected);
     }
